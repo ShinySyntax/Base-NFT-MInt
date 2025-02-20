@@ -207,6 +207,7 @@ export default function Home() {
       },
     ],
   });
+  
 
   const [showModal, setShowModal] = useState(false);
 
@@ -340,8 +341,8 @@ export default function Home() {
         isActive: res[5].result,
         count: {
           maxSupply: 500,
-          left: Math.max(0, 500 - Number(res[8]?.result)),
-          mintCount: parseFloat(formatUnits(res[8]?.result || 0, 0)),
+          left: mintCount > 2000 ? 2500 - mintCount: 0,
+          mintCount: res[8]?.result || 0,
         },
       },
       {
@@ -350,8 +351,8 @@ export default function Home() {
         isActive: res[6].result,
         count: {
           maxSupply: 750,
-          left: Math.max(0, 750 - Number(res[9]?.result)),
-          mintCount: parseFloat(formatUnits(res[9]?.result || 0, 0)),
+          left: mintCount > 1250 ? 2000 - mintCount: 0,
+          mintCount: res[9]?.result || 0,
         },
       },
       {
@@ -360,7 +361,7 @@ export default function Home() {
         isActive: res[7].result,
         count: {
           maxSupply: 1250,
-          left: mintCount <= 1250 ? Math.max(0, 1250 - mintCount) : 0,
+          left: mintCount <= 1250 ? 1250 - mintCount : 0,
           mintCount: parseFloat(formatUnits(res[10]?.result || 0, 0)),
         },
       },
