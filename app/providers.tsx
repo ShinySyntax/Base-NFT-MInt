@@ -10,20 +10,17 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
-import { ThirdwebProvider as ThirdwebProviderV4 } from '@thirdweb-dev/react';
 
 const queryClient = new QueryClient();
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <ThirdwebProviderV4>
-        <ThirdwebProvider>
-          <WagmiProvider config={config}>
-            <QueryClientProvider client={queryClient}>
-              {children}
-            </QueryClientProvider>
-          </WagmiProvider>
-        </ThirdwebProvider>
-      </ThirdwebProviderV4>
+      <ThirdwebProvider {...({ clientId: process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID } as any)}>
+        <WagmiProvider config={config}>
+          <QueryClientProvider client={queryClient}>
+            {children}
+          </QueryClientProvider>
+        </WagmiProvider>
+      </ThirdwebProvider>
   );
 }
