@@ -98,7 +98,7 @@ const initialNftCards: params[] = [
 ];
 
 const client = createThirdwebClient({
-  secretKey: process.env.NEXT_PUBLIC_THIRDWEB_SECRET_KEY!,
+  secretKey: process.env.NEXT_PUBLIC_THIRDWEB_SECRET_KEY ?? "",
 });
 
 const wallets = [
