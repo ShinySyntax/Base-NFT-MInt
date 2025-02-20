@@ -1,5 +1,9 @@
-import Image from "next/image";
-import { Climate_Crisis, Changa_One, Varela_Round } from "next/font/google";
+import {
+  Changa_One,
+  Climate_Crisis,
+  Varela_Round,
+} from 'next/font/google';
+import Image from 'next/image';
 
 const climateCrisis = Climate_Crisis({ subsets: ["latin"] });
 const changaOne = Changa_One({ weight: "400", subsets: ["latin"] });
