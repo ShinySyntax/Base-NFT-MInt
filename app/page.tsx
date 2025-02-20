@@ -355,7 +355,7 @@ export default function Home() {
         count: {
           maxSupply: 500,
           left: ghostFamLeft,
-          mintCount: res[8]?.result || 0,
+          mintCount: parseFloat(formatUnits(res[8]?.result || 0, 0)),
         },
       },
       {
@@ -365,7 +365,7 @@ export default function Home() {
         count: {
           maxSupply: 750,
           left: earlyGhostLeft,
-          mintCount: res[9]?.result || 0,
+          mintCount: parseFloat(formatUnits(res[9]?.result || 0, 0)),
         },
       },
       {
