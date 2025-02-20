@@ -149,7 +149,6 @@ export default function Home() {
   const switchChain = useSwitchActiveWalletChain();
 
   useEffect(() => {
-    console.log("chain id", chainId);
     if (wallet && chainId && chainId !== Number(process.env.NEXT_PUBLIC_CHAIN_ID)) {
       switchChain(base).catch((err: any) => {
         console.error("Failed to switch chain:", err);
@@ -212,7 +211,6 @@ export default function Home() {
   const [showModal, setShowModal] = useState(false);
 
   const onMintNFT = async () => {
-    console.log("chain Id", chainId, process.env.NEXT_PUBLIC_CHAIN_ID?.toString());
     try {
       if (
         chainId != process.env.NEXT_PUBLIC_CHAIN_ID?.toString()
@@ -307,6 +305,7 @@ export default function Home() {
       return;
     }
     cards[2].count.mintCount++;
+
     setNftCards(cards);
   };
 
@@ -362,7 +361,7 @@ export default function Home() {
         count: {
           maxSupply: 1250,
           left: mintCount <= 1250 ? 1250 - mintCount : 0,
-          mintCount: parseFloat(formatUnits(res[10]?.result || 0, 0)),
+          mintCount: 0,
         },
       },
     ];
@@ -375,11 +374,7 @@ export default function Home() {
     } else {
       if (!result.data) return;
       const res = result.data;
-      const mintCount = parseInt(formatUnits(res[10].result as bigint, 0));
-
-      console.log("mint count", mintCount);
-
-      setCardInfo(res, mintCount);
+      setCardInfo(res, 0);
     }
   }, [isConnected, result.data]);
 
