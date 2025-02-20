@@ -219,9 +219,11 @@ export default function Home() {
         return;
       }
 
-      console.log("result", result);
+      if (!result?.data || !nftCards.length || currentStep == -1) {
+        toast.error("Cannot mint now");
+        return;
+      }
 
-      if (!result?.data || !nftCards.length || currentStep == -1) return;
       if (
         nftCards[currentStep].control &&
         (nftCards[currentStep].count.mintCount >
@@ -231,6 +233,7 @@ export default function Home() {
         toast.error("Wrong count!");
         return;
       }
+
       const totalSupply = parseInt(
         formatUnits(result.data[10].result as bigint, 0)
       );
@@ -251,6 +254,7 @@ export default function Home() {
         });
         setShowModal(true);
       }
+      
       if (result.data[6].result) {
         if (totalSupply + 1 > 1250) {
           toast.error("Max Supply reached!");
@@ -333,6 +337,16 @@ export default function Home() {
   };
 
   const setCardInfo = (res: any, mintCount: number) => {
+    const totalSupply = Number(res[10]?.result);
+    const ghostFamLeft = totalSupply <= 500 ? 500 - totalSupply: 0;
+    const publicLeft = totalSupply > 1250 ? 2500 - totalSupply : 1250;
+    let earlyGhostLeft = 0;
+    if(totalSupply <= 500) {
+      earlyGhostLeft = 750;
+    } else {
+      earlyGhostLeft = totalSupply <= 1250 ? 2000 - totalSupply : 0;
+    }
+
     const cards = [
       {
         ...initialNftCards[0],
@@ -340,7 +354,7 @@ export default function Home() {
         isActive: res[5].result,
         count: {
           maxSupply: 500,
-          left: mintCount > 2000 ? 2500 - mintCount: 0,
+          left: ghostFamLeft,
           mintCount: res[8]?.result || 0,
         },
       },
@@ -350,7 +364,7 @@ export default function Home() {
         isActive: res[6].result,
         count: {
           maxSupply: 750,
-          left: mintCount > 1250 ? 2000 - mintCount: 0,
+          left: earlyGhostLeft,
           mintCount: res[9]?.result || 0,
         },
       },
@@ -360,7 +374,7 @@ export default function Home() {
         isActive: res[7].result,
         count: {
           maxSupply: 1250,
-          left: mintCount <= 1250 ? 1250 - mintCount : 0,
+          left: publicLeft,
           mintCount: 0,
         },
       },
