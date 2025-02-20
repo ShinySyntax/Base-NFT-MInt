@@ -10,6 +10,7 @@ frontend:
       commands:
         - yarn build
   artifacts:
+    baseDirectory: .next   # Use the full .next folder for SSR deployments
     files:
       - '**/*'
   cache:
