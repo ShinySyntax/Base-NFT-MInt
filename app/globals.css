@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.connectWallet {
+  background-color: #0fc !important;
+  color: #5b00da !important;
+  border-radius: 10px !important;
+  font-size: 20px !important;
+  padding: 5px 10px !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+}
+
+.connectedWallet {
+  background-color: "1A1B1F" !important;
+  border-radius: 10px !important;
+  font-size: 20px !important;
+  padding: 5px 10px !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+}
+
+/* .tw-connected-wallet__balance {
+  display: none !important;
+} */
+
+.connectedWallet:hover {
+  transform: scale(1.05); /* Zooms the button to 1.1 times its size */
+}
+
+.connectWallet:hover {
+  transform: scale(1.05); /* Zooms the button to 1.1 times its size */
+}
+
+.modal_button:hover {
+  transform: scale(1.05) !important;
+}
+
+video::-webkit-media-controls-container {
+  opacity: 0 !important;
+}
+
+*::-webkit-media-controls-panel {
+  display: none !important;
+  -webkit-appearance: none;
+}
+/* Old shadow dom for play button */
+*::state(webkit-media-controls-play-button) {
+  display: none !important;
+  -webkit-appearance: none;
+}
+/* New shadow dom for play button */
+/* This one works */
+*::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
