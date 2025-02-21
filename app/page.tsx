@@ -215,8 +215,11 @@ export default function Home() {
       if (
         chainId != process.env.NEXT_PUBLIC_CHAIN_ID?.toString()
       ) {
-        toast.error("Wrong Network!");
-        return;
+        switchChain(base).catch((err: any) => {
+          console.error("Failed to switch chain:", err);
+          toast.error("Wrong Network!");
+          return;
+        });
       }
 
       if (!result?.data || !nftCards.length || currentStep == -1) {
