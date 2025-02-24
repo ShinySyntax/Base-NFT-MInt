@@ -347,7 +347,7 @@ export default function Home() {
     if(totalSupply <= 500) {
       earlyGhostLeft = 750;
     } else {
-      earlyGhostLeft = totalSupply <= 1250 ? 2000 - totalSupply : 0;
+      earlyGhostLeft = totalSupply <= 1250 ? 1250 - totalSupply : 0;
     }
 
     const cards = [
